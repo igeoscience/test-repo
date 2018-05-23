@@ -155,7 +155,7 @@ pane.addControl(params, 'geolmap').on(
     if ( value && !viewerdataSources.contains(dataSource1) ) {
         viewer.dataSources.add( dataSource1, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
     } else if (!value && viewerdataSources.contains(dataSource1)){
-      viewer.dataSources.remove( dataSource1, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+      viewer.dataSources.remove( dataSource1 );
     }
   }
 );
