@@ -109,8 +109,13 @@ ToDo:
     //pins.show = false;
 
 // kml
-        var dataSource = new Cesium.KmlDataSource();
-        dataSource.load('./kml/geo.kml');
+      var kmlOptions = {
+          camera : viewer.scene.camera,
+          canvas : viewer.scene.canvas,
+          clampToGround : true
+      };
+        var dataSource = new Cesium.KmlDataSource('./kml/geo.kml', kmlOptions);
+
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
 // Cesium Man
@@ -141,7 +146,7 @@ pane.addControl(params, 'geolmap').on(
   'change',
   function(value) {
     if ( value ) {
-      viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+      viewer.dataSources.add( dataSource, kmlOptions );
     } else {
       viewer.dataSources.remove( dataSource );
 
