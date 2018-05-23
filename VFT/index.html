@@ -62,7 +62,7 @@ ToDo:
      geocoder: false,
      sceneModePicker: false,
      homeButton: false,
-     //baseLayerPicker: false,
+     baseLayerPicker: false,
      timeline: false,
      navigationInstructionsInitiallyVisible: false,
    });
@@ -111,7 +111,7 @@ ToDo:
 // kml
         var dataSource = new Cesium.KmlDataSource();
         dataSource.load('./kml/geo.kml');
-        //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+        viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
 // Cesium Man
         var entity = viewer.entities.add({
