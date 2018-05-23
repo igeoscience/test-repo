@@ -46,9 +46,12 @@ ToDo:
 
   <script>
 
-  //Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZDIyMGQ2OC1iYzEyLTQyMTctYjhjNi0yMGFjOTA3OThhOTYiLCJpZCI6MTA3MSwiaWF0IjoxNTI2OTIxMzM3fQ.2qh4LLSe7akC3yF2-0cZ_7hCfGXhcRs6RHjnyDdqMKk';
+  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZDIyMGQ2OC1iYzEyLTQyMTctYjhjNi0yMGFjOTA3OThhOTYiLCJpZCI6MTA3MSwiaWF0IjoxNTI2OTIxMzM3fQ.2qh4LLSe7akC3yF2-0cZ_7hCfGXhcRs6RHjnyDdqMKk';
   var viewDiv = document.getElementById('cesiumContainer');
 
+  var viewer = new Cesium.Viewer('cesiumContainer');
+
+/*
   var viewer = new Cesium.Viewer('cesiumContainer',
       {
      //imageryProvider: Cesium.createWorldImagery(),
@@ -66,6 +69,8 @@ ToDo:
      timeline: false,
      navigationInstructionsInitiallyVisible: false,
    });
+
+*/
 
     //viewer.terrainProvider = Cesium.createWorldTerrain();
 
@@ -109,9 +114,10 @@ ToDo:
     //pins.show = false;
 
 // kml
-        var dataSource = new Cesium.KmlDataSource();
-        dataSource.load('./kml/geo.kml');
+        //var dataSource = new Cesium.KmlDataSource();
+        //dataSource.load('./kml/geo.kml');
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+        viewer.dataSources.add(Cesium.kmlDataSource.load("./kml/geo.kml"));
 
 // Cesium Man
         var entity = viewer.entities.add({
