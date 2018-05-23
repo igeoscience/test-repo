@@ -152,9 +152,9 @@ var pane = new Tweakpane({foldable: true});
 pane.addControl(params, 'geolmap').on(
   'change',
   function(value) {
-    if ( value && !viewer.DataSources.contains(dataSource1) ) {
+    if ( value && !viewer.dataSources.contains(dataSource1) ) {
         viewer.dataSources.add( dataSource1, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
-    } else if (!value && viewer.DataSources.contains(dataSource1)){
+    } else if (!value && viewer.dataSources.contains(dataSource1)){
       viewer.dataSources.remove( dataSource1 );
     }
   }
