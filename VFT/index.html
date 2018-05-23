@@ -118,7 +118,7 @@ ToDo:
         //dataSource.load('./kml/geo.kml');
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
         var geolMap = viewer.dataSources.add(Cesium.KmlDataSource
-        .load('./kml/geo.kml', {
+        .loadUrl('./kml/geo.kml', {
             camera: viewer.camera,
             canvas: viewer.canvas,
             clampToGround: true,
