@@ -46,7 +46,7 @@ ToDo:
 
   <script>
 
-  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZDIyMGQ2OC1iYzEyLTQyMTctYjhjNi0yMGFjOTA3OThhOTYiLCJpZCI6MTA3MSwiaWF0IjoxNTI2OTIxMzM3fQ.2qh4LLSe7akC3yF2-0cZ_7hCfGXhcRs6RHjnyDdqMKk';
+  //Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZDIyMGQ2OC1iYzEyLTQyMTctYjhjNi0yMGFjOTA3OThhOTYiLCJpZCI6MTA3MSwiaWF0IjoxNTI2OTIxMzM3fQ.2qh4LLSe7akC3yF2-0cZ_7hCfGXhcRs6RHjnyDdqMKk';
   var viewDiv = document.getElementById('cesiumContainer');
 
   var viewer = new Cesium.Viewer('cesiumContainer',
@@ -67,12 +67,14 @@ ToDo:
      navigationInstructionsInitiallyVisible: false,
    });
 
+    //viewer.terrainProvider = Cesium.createWorldTerrain();
+
     var entities = viewer.entities;
     var scene = viewer.scene;
 
     // change camera view
     viewer.camera.setView({
-    destination : Cesium.Cartesian3.fromDegrees(-3.080, 54.6, 1000000),
+    destination : Cesium.Cartesian3.fromDegrees(137.0, 35, 1000000),
     orientation: {
       heading : 0.0,
       pitch : -Cesium.Math.PI_OVER_TWO,
@@ -107,27 +109,26 @@ ToDo:
     //pins.show = false;
 
 // kml
-      var kmlOptions = {
-          camera : viewer.camera,
-          canvas : viewer.canvas,
-          clampToGround : true
-      };
-        var dataSource = new Cesium.KmlDataSource('./kml/geo.kml');
-        //viewer.dataSources.add( dataSource, { camera : viewer.camera, canvas : viewer.canvas, clampToGround : true });
-        viewer.dataSources.add( dataSource, {camera: viewer.camera, canvas: viewer.canvas,clampToGround: true,});
+        var dataSource = new Cesium.KmlDataSource();
+        dataSource.load('./kml/geo.kml');
+        //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
 // Cesium Man
         var entity = viewer.entities.add({
-            position: Cesium.Cartesian3.fromDegrees( -2.98973487481007,54.666797611224) ,
+            position: Cesium.Cartesian3.fromDegrees( -2.98973487481007,54.666797611224)                                        ,
             id: 'CesiumMan',
             model: {                  uri: './images/Cesium_Man.gltf'
             }
         });
 
 
-        //viewer.zoomTo(entity, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(-45),Cesium.Math.toRadians(-30)));
+        viewer.zoomTo(entity, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(-45),Cesium.Math.toRadians(-30)));
 
         //entity.show = false;
+
+
+
+
 
 
 
@@ -140,9 +141,9 @@ pane.addControl(params, 'geolmap').on(
   'change',
   function(value) {
     if ( value ) {
-      viewer.dataSources.add( dataSource, kmlOptions );
+      viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
     } else {
-      viewer.dataSources.remove( dataSource );
+      viewer.dataSources.remove( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
     }
   }
