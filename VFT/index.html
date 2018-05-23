@@ -113,7 +113,9 @@ ToDo:
           clampToGround : true
       };
         var dataSource = new Cesium.KmlDataSource('./kml/geo.kml');
-
+        viewer.dataSources.add( dataSource, camera : viewer.camera,
+        canvas : viewer.canvas,
+        clampToGround : true );
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
 // Cesium Man
