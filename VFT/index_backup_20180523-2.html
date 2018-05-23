@@ -114,11 +114,10 @@ ToDo:
     //pins.show = false;
 
 // kml
-        var dataSource1 = new Cesium.KmlDataSource();
+        //var dataSource = new Cesium.KmlDataSource();
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
-        dataSource1.load("./kml/geo.kml");
-
-        viewer.dataSources.add(dataSource1, {
+        viewer.dataSources.add(Cesium.KmlDataSource
+        .load('./kml/geo.kml', {
             camera: viewer.camera,
             canvas: viewer.canvas,
             clampToGround: true,
@@ -153,10 +152,11 @@ var pane = new Tweakpane({foldable: true});
 pane.addControl(params, 'geolmap').on(
   'change',
   function(value) {
-    if ( value && !viewerdataSources.contains(dataSource1) ) {
-        viewer.dataSources.add( dataSource1, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
-    } else if (!value && viewerdataSources.contains(dataSource1)){
-      viewer.dataSources.remove( dataSource1, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+    if ( value ) {
+      viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+    } else {
+      viewer.dataSources.remove( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+
     }
   }
 );
