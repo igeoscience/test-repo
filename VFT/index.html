@@ -108,11 +108,11 @@ ToDo:
 
 // kml
       var kmlOptions = {
-          camera : viewer.scene.camera,
-          canvas : viewer.scene.canvas,
+          camera : viewer.camera,
+          canvas : viewer.canvas,
           clampToGround : true
       };
-        var dataSource = new Cesium.KmlDataSource('./kml/geo.kml', kmlOptions);
+        var dataSource = new Cesium.KmlDataSource('./kml/geo.kml');
 
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
