@@ -79,10 +79,10 @@ ToDo:
 
     // change camera view
     viewer.camera.setView({
-    destination : Cesium.Cartesian3.fromDegrees(-3.08, 54.6, 1000000),
+    destination : Cesium.Cartesian3.fromDegrees(-3.08, 54.55, 3000),
     orientation: {
-      heading : 0.0,
-      pitch : -Cesium.Math.PI_OVER_TWO,
+      heading : 0,
+      pitch : -Cesium.Math.PI_OVER_TWO/4,
       roll : 0.0
      }
     });
@@ -90,12 +90,12 @@ ToDo:
 
 // pins
     var stops = [
-      {"id": 1, "lon": -3.08015511312847, "lat": 54.6219298654066, "height": 430},
-      {"id": 2, "lon": -3.08464525531684, "lat": 54.634143052159, "height": 470},
-      {"id": 3, "lon": -3.08644131219219, "lat": 54.6396210256288, "height": 470},
-      {"id": 4, "lon": -3.08698012925479, "lat": 54.6441111678172, "height": 470},
-      {"id": 5, "lon": -3.08491466384814, "lat": 54.644200970661, "height": 530},
-      {"id": 6, "lon": -2.98973487481007, "lat": 54.666797611224, "height": 330},
+      {"id": 1, "lon": -3.07911, "lat": 54.62084, "height": 335},
+      {"id": 2, "lon": -3.0866, "lat": 54.63279, "height": 400},
+      {"id": 3, "lon": -3.08848, "lat": 54.63845, "height": 400},
+      {"id": 4, "lon": -3.08668, "lat": 54.64312, "height": 470},
+      {"id": 5, "lon": -3.08372, "lat": 54.64327, "height": 500},
+      {"id": 6, "lon": -2.98874, "lat": 54.66618, "height": 280},
     ];
 
     var pins = entities.add(new Cesium.Entity());
@@ -106,7 +106,7 @@ ToDo:
             position: Cesium.Cartesian3.fromDegrees(stops[i].lon, stops[i].lat, stops[i].height),
             id: stops[i].id,
             billboard: {
-                image: pinBuilder.fromText(stops[i].id, Cesium.Color.SALMON, 64),
+                image: pinBuilder.fromText(stops[i].id, Cesium.Color.SALMON, 128),
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM
             }
         });
@@ -306,6 +306,11 @@ function addToMessage(key, value) {
 var pickedObject = scene.pick(click.position);
 // if (Cesium.defined(pickedObject) && (pickedObject.id === entity)) {
  if (Cesium.defined(pickedObject)) {
+   //alert( pickedObject.id.id );この変数で場合わけ
+   $('#modal1').iziModal('open', this);
+   viewer.trackedEntity = undefined;
+   return (false);
+   /*
     addToMessage('target', pickedObject.id.id);
     var position = viewer.camera.pickEllipsoid(click.position);
     addToMessage('screenX', click.position.x);
@@ -316,6 +321,7 @@ var pickedObject = scene.pick(click.position);
     addToMessage('latitude', Cesium.Math.toDegrees(cartographicPosition.latitude));
 terrainSamplePositions = [cartographicPosition];
 
+
     Cesium.sampleTerrain(viewer.terrainProvider, 9, terrainSamplePositions).then(function() {
         addToMessage('height', terrainSamplePositions[0].height);
     }).always(function() {
@@ -323,7 +329,9 @@ terrainSamplePositions = [cartographicPosition];
      $('#modal1').iziModal('open', this);
      viewer.trackedEntity = undefined;
     });
-}
+*/
+
+  }
 }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
 
