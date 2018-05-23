@@ -90,10 +90,10 @@ ToDo:
 
 // pins
     var stops = [
-      {"id": 1, "lon": -3.08015511312847, "lat": 54.6219298654066, "height": 330},
-      {"id": 2, "lon": -3.08464525531684, "lat": 54.634143052159, "height": 530},
-      {"id": 3, "lon": -3.08644131219219, "lat": 54.6396210256288, "height": 530},
-      {"id": 4, "lon": -3.08698012925479, "lat": 54.6441111678172, "height": 530},
+      {"id": 1, "lon": -3.08015511312847, "lat": 54.6219298654066, "height": 430},
+      {"id": 2, "lon": -3.08464525531684, "lat": 54.634143052159, "height": 470},
+      {"id": 3, "lon": -3.08644131219219, "lat": 54.6396210256288, "height": 470},
+      {"id": 4, "lon": -3.08698012925479, "lat": 54.6441111678172, "height": 470},
       {"id": 5, "lon": -3.08491466384814, "lat": 54.644200970661, "height": 530},
       {"id": 6, "lon": -2.98973487481007, "lat": 54.666797611224, "height": 330},
     ];
@@ -116,6 +116,8 @@ ToDo:
 // kml
         //var dataSource = new Cesium.KmlDataSource();
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+
+        /* 地質図を表示するには、ここをあとでアンコメント
         viewer.dataSources.add(Cesium.KmlDataSource
         .load('./kml/geo.kml', {
             camera: viewer.camera,
@@ -123,6 +125,7 @@ ToDo:
             clampToGround: true,
           })
         );
+        */
 
 
 // Cesium Man
