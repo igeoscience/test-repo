@@ -117,7 +117,13 @@ ToDo:
         //var dataSource = new Cesium.KmlDataSource();
         //dataSource.load('./kml/geo.kml');
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
-        viewer.dataSources.add(Cesium.kmlDataSource.load("./kml/geo.kml"));
+        var geolMap = viewer.dataSources.add(Cesium.KmlDataSource
+        .load('./kml/geo.kml', {
+            camera: viewer.camera,
+            canvas: viewer.canvas,
+            clampToGround: true,
+          })
+        );
 
 // Cesium Man
         var entity = viewer.entities.add({
