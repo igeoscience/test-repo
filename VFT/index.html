@@ -52,7 +52,7 @@ ToDo:
   var viewer = new Cesium.Viewer('cesiumContainer',
       {
      imageryProvider: Cesium.createWorldImagery(),
-     terrainProvider: Cesium.createWorldTerrain(),
+     //terrainProvider: Cesium.createWorldTerrain(),
      animation: false,
      fullscreenElement: 'previewContent',
      infoBox: false,
@@ -61,20 +61,18 @@ ToDo:
      navigationHelpButton: false,
      geocoder: false,
      sceneModePicker: false,
-     homeButton: false,
-     baseLayerPicker: false,
+     //homeButton: false,
+     //baseLayerPicker: false,
      timeline: false,
      navigationInstructionsInitiallyVisible: false,
    });
-
-    viewer.terrainProvider = Cesium.createWorldTerrain();
 
     var entities = viewer.entities;
     var scene = viewer.scene;
 
     // change camera view
     viewer.camera.setView({
-    destination : Cesium.Cartesian3.fromDegrees(137.0, 35, 1000000),
+    destination : Cesium.Cartesian3.fromDegrees(-3.080, 54.6, 1000000),
     orientation: {
       heading : 0.0,
       pitch : -Cesium.Math.PI_OVER_TWO,
@@ -130,10 +128,6 @@ ToDo:
         //viewer.zoomTo(entity, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(-45),Cesium.Math.toRadians(-30)));
 
         //entity.show = false;
-
-
-
-
 
 
 
