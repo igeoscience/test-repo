@@ -11,7 +11,13 @@ Plugins  (elevation, Compass)あり　あとで追加
 
 ToDo:
 - panorama.htmlをtouch対応にする。
+- panoramaをGigapanに
+- このサイトから、キーイベントを取り出し、heightを0にして移動させる。高さはheightに保存
+　　https://cesiumjs.org/tutorials/Camera-Tutorial/
+  Camera Tutorialも参考になる。
+  　https://cesiumjs.org/Cesium/Build/Apps/Sandcastle/index.html?src=Camera.html
 //-->
+
 <html lang="en">
 <head>
   <!-- Use correct character set. -->
@@ -35,7 +41,7 @@ ToDo:
   <div id="cesiumContainer"></div>
 
   <!--  modal windows //-->
-  <div id="modal1" class="modais iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./stop1-1.html"></div>
+  <div id="modal1" class="modais iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
   <div id="modal2" class="modais iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
   <div id="modal3" class="modais iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
 
@@ -48,9 +54,6 @@ ToDo:
 
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZDIyMGQ2OC1iYzEyLTQyMTctYjhjNi0yMGFjOTA3OThhOTYiLCJpZCI6MTA3MSwiaWF0IjoxNTI2OTIxMzM3fQ.2qh4LLSe7akC3yF2-0cZ_7hCfGXhcRs6RHjnyDdqMKk';
   var viewDiv = document.getElementById('cesiumContainer');
-
-  //var viewer = new Cesium.Viewer('cesiumContainer');
-
 
   var viewer = new Cesium.Viewer('cesiumContainer',
       {
@@ -69,24 +72,57 @@ ToDo:
      timeline: false,
      navigationInstructionsInitiallyVisible: false,
    });
+   var camera = viewer.camera;
+   var scene = viewer.scene;
+   var canvas = viewer.canvas;
+   canvas.setAttribute('tabindex', '0'); // needed to put focus on the canvas
+   canvas.onclick = function() {
+       canvas.focus();
+   };
+/*
+   // disable the default event handlers
+   scene.screenSpaceCameraController.enableRotate = false;
+   scene.screenSpaceCameraController.enableTranslate = false;
+   scene.screenSpaceCameraController.enableZoom = false;
+   scene.screenSpaceCameraController.enableTilt = false;
+   scene.screenSpaceCameraController.enableLook = false;
+   */
+
+   var startMousePosition;
+   var mousePosition;
+   var flags = {
+     looking : false,
+     moveForward : false,
+     moveBackward : false,
+     moveUp : false,
+     moveDown : false,
+     moveLeft : false,
+     moveRight : false,
+     turnRight: false,
+     turnLeft: false,
+     turnDown: false,
+     turnUp: false,
+     rollRight: false,
+     rollLeft: false,
+   };
 
 
 
-    //viewer.terrainProvider = Cesium.createWorldTerrain();
+
 
     var entities = viewer.entities;
-    var scene = viewer.scene;
+
+
 
     // change camera view
     viewer.camera.setView({
-    destination : Cesium.Cartesian3.fromDegrees(-3.08, 54.55, 3000),
+    destination : Cesium.Cartesian3.fromDegrees(-3.08, 54.55, 3000 ),
     orientation: {
       heading : 0,
       pitch : -Cesium.Math.PI_OVER_TWO/4,
       roll : 0.0
      }
     });
-
 
 // pins
     var stops = [
@@ -148,6 +184,7 @@ ToDo:
 
 
 var params = {
+    viewMode: 'F',
     geolmap: false
 };
 var pane = new Tweakpane({foldable: true});
@@ -165,6 +202,44 @@ pane.addControl(params, 'geolmap').on(
   }
 );
 */
+
+
+pane.addSelector(params, 'viewMode', {
+  values: {
+    Fly: 'F',
+    Walk: 'W',
+  }
+}).on(
+  'change',
+  function(value) {
+    if ( value == "F" ){ // fly mode
+      var camera  = viewer.camera;
+      var cam = new Cesium.Cartographic.fromCartesian(camera.position);
+      camera.flyTo({
+        destination : new Cesium.Cartesian3.fromRadians(cam.longitude, cam.latitude, 1000 + viewer.scene.globe.getHeight( Cesium.Cartographic.fromCartesian(camera.position) ) ),
+        orientation: {
+          heading : camera.heading,
+          pitch : -Cesium.Math.PI_OVER_TWO/4,
+          roll : 0
+        },
+      })
+    } else if ( value == "W"){  // walk mode
+      var camera  = viewer.camera;
+      var cam = new Cesium.Cartographic.fromCartesian(camera.position);
+      camera.flyTo({
+        destination : new Cesium.Cartesian3.fromRadians(cam.longitude, cam.latitude, viewer.scene.globe.getHeight( Cesium.Cartographic.fromCartesian(camera.position) ) ),
+        orientation: {
+          heading : camera.heading,
+          pitch : -Cesium.Math.PI_OVER_TWO/4,
+          roll : 0
+        },
+      });
+
+    }
+
+  }
+);
+
 
 
 var folder1 = pane.addFolder('Utility');
@@ -280,10 +355,34 @@ $(function(){
             fullscreen: true,
             headerColor: '#000000',
             group: 'group1',
-            loop: true
+            loop: true,
+            arrowKeys: true,
+            navigateCaption: true,
+            navigateArrows: true,
+            closeButton: true,
           });
 });
 
+
+
+
+viewer.clock.onTick.addEventListener(function(clock) {
+    var camera = viewer.camera;
+});
+
+
+
+// functions
+
+function getHeight (lon, lat){
+  var pt = Cesium.Cartographic.fromDegrees(lon, lat);
+  console.log(pt);
+
+  var ht = viewer.scene.globe.getHeight(pt);
+  console.log(ht);
+
+  return (ht);
+}
 
 function onPress( event ) {
 
@@ -295,8 +394,27 @@ function onPress( event ) {
   }
 }
 
+
+
 // event handler
-var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+
+
+document.addEventListener('keydown', function(e) {
+    var flagName = getFlagForKeyCode(e.keyCode);
+    if (typeof flagName !== 'undefined') {
+        flags[flagName] = true;
+    }
+}, false);
+
+document.addEventListener('keyup', function(e) {
+    var flagName = getFlagForKeyCode(e.keyCode);
+    if (typeof flagName !== 'undefined') {
+        flags[flagName] = false;
+    }
+}, false);
+
+
+var handler = new Cesium.ScreenSpaceEventHandler(canvas);
 handler.setInputAction(function(click) {
 var alertText = '';
 function addToMessage(key, value) {
@@ -334,6 +452,206 @@ terrainSamplePositions = [cartographicPosition];
   }
 }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
+
+
+// camera control
+var handler = new Cesium.ScreenSpaceEventHandler(canvas);
+
+// mouse flag
+handler.setInputAction(function(movement) {
+    flags.looking = true;
+    mousePosition = startMousePosition = Cesium.Cartesian3.clone(movement.position);
+}, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+
+handler.setInputAction(function(movement) {
+    mousePosition = movement.endPosition;
+}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+handler.setInputAction(function(position) {
+    flags.looking = false;
+}, Cesium.ScreenSpaceEventType.LEFT_UP);
+
+function getFlagForKeyCode(keyCode) {
+    switch (keyCode) {
+    case 'E'.charCodeAt(0):
+        return 'moveForward';
+    case 'D'.charCodeAt(0):
+        return 'moveBackward';
+    case 'R'.charCodeAt(0):
+        return 'moveUp';
+    case 'W'.charCodeAt(0):
+        return 'moveDown';
+    case 'F'.charCodeAt(0):
+        return 'moveRight';
+    case 'S'.charCodeAt(0):
+        return 'moveLeft';
+    case 'L'.charCodeAt(0):
+        return 'turnRight';
+    case 'J'.charCodeAt(0):
+        return 'turnLeft';
+    case 'I'.charCodeAt(0):
+        return 'turnUp';
+    case 'K'.charCodeAt(0):
+        return 'turnDown';
+    case 'O'.charCodeAt(0):
+        return 'rollRight';
+    case 'U'.charCodeAt(0):
+        return 'rollLeft';
+    default:
+        return undefined;
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    var flagName = getFlagForKeyCode(e.keyCode);
+    if (typeof flagName !== 'undefined') {
+        flags[flagName] = true;
+    }
+}, false);
+
+document.addEventListener('keyup', function(e) {
+    var flagName = getFlagForKeyCode(e.keyCode);
+    if (typeof flagName !== 'undefined') {
+        flags[flagName] = false;
+    }
+}, false);
+
+function walk(){
+    var camera  = viewer.camera;
+    var cam = new Cesium.Cartographic.fromCartesian(camera.position);
+    viewer.camera.setView({
+      destination : new Cesium.Cartesian3.fromRadians(cam.longitude, cam.latitude, 5 + viewer.scene.globe.getHeight( Cesium.Cartographic.fromCartesian(camera.position) ) ),
+      orientation: {
+        heading : camera.heading,
+        pitch : camera.pitch,
+        roll : 0
+      },
+    });
+}
+
+function turnCamera(e){
+  var camera = viewer.camera;
+  var factor = 0.03;
+  switch(e){
+    case 'turnRight':
+      camera.lookRight(factor);
+      break;
+    case 'turnLeft':
+      camera.lookRight(-factor);
+      break;
+    case 'turnUp':
+      camera.lookUp(factor);
+      break;
+    case 'turnDown':
+      camera.lookUp(-factor);
+      break;
+    case 'rollRight':
+      camera.look(camera.direction, -factor);
+      break;
+    case 'rollLeft':
+      camera.look(camera.direction, factor);
+      break;
+  }
+
+
+
+
+}
+
+viewer.clock.onTick.addEventListener(function(clock) {
+    var camera = viewer.camera;
+/*
+    if (flags.looking) {
+        var width = canvas.clientWidth;
+        var height = canvas.clientHeight;
+
+        // Coordinate (0.0, 0.0) will be where the mouse was clicked.
+        var x = (mousePosition.x - startMousePosition.x) / width;
+        var y = -(mousePosition.y - startMousePosition.y) / height;
+
+        var lookFactor = 0.05;
+        camera.lookRight(x * lookFactor);
+        camera.lookUp(y * lookFactor);
+
+    }
+*/
+
+    // Change movement speed based on the distance of the camera to the surface of the ellipsoid.
+    //var cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+
+
+/*
+var pt = Cesium.Cartographic.fromDegrees(-3.08, 54.62);
+var ht = viewer.scene.globe.getHeight(pt);
+Cesium.Cartesian3.fromRadians(pt.longitude, pt.latitude,ht),
+*/
+
+
+    var cameraHeight =camera.positionCartographic.height - viewer.scene.globe.getHeight( Cesium.Cartographic.fromCartesian( camera.position ) );
+
+    if ( params.viewMode == "W" ){
+      var moveRate = 10;
+    } else {
+      var moveRate = cameraHeight / 10.0;
+  }
+
+    console.log(cameraHeight);
+    /*
+    if ( cameraHeight < 20) {
+      moveRate = 0;
+    }
+    */
+
+    if (flags.moveForward) {
+        camera.moveForward(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.moveBackward) {
+        camera.moveBackward(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.moveUp) {
+        camera.moveUp(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.moveDown) {
+        camera.moveDown(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.moveLeft) {
+        camera.moveLeft(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.moveRight) {
+        camera.moveRight(moveRate);
+        if( params.viewMode == "W") walk();
+    }
+    if (flags.turnRight) {
+        turnCamera('turnRight');
+    }
+    if (flags.turnLeft) {
+        turnCamera('turnLeft');
+    }
+    if (flags.turnUp) {
+        turnCamera('turnUp');
+    }
+    if (flags.turnDown) {
+        turnCamera('turnDown');
+    }
+    if (flags.rollRight) {
+        turnCamera('rollRight');
+    }
+    if (flags.rollLeft) {
+        turnCamera('rollLeft');
+    }
+
+
+
+
+
+
+
+});
 
 // hammer.js
 
