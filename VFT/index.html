@@ -477,8 +477,15 @@ handler.setInputAction(function(position) {
 
 handler.setInputAction(function(position) {
     if( params.viewMode == "W") walk();
+}, Cesium.ScreenSpaceEventType.PINCH_START);
+
+handler.setInputAction(function(position) {
+    if( params.viewMode == "W") walk();
 }, Cesium.ScreenSpaceEventType.PINCH_MOVE);
 
+handler.setInputAction(function(position) {
+    if( params.viewMode == "W") walk();
+}, Cesium.ScreenSpaceEventType.PINCH_END);
 
 function getFlagForKeyCode(keyCode) {
     switch (keyCode) {
