@@ -385,7 +385,6 @@ function getHeight (lon, lat){
 }
 
 function onPress( event ) {
-
   event.preventDefault();
   var pickedObject = scene.pick(event.center);
   if (Cesium.defined(pickedObject)) {
@@ -470,6 +469,11 @@ handler.setInputAction(function(movement) {
 handler.setInputAction(function(position) {
     flags.looking = false;
 }, Cesium.ScreenSpaceEventType.LEFT_UP);
+
+handler.setInputAction(function(position) {
+    walk();
+}, Cesium.ScreenSpaceEventType.PINCH_MOVE);
+
 
 function getFlagForKeyCode(keyCode) {
     switch (keyCode) {
