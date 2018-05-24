@@ -464,6 +464,7 @@ handler.setInputAction(function(movement) {
 
 handler.setInputAction(function(movement) {
     mousePosition = movement.endPosition;
+    if( params.viewMode == "W") walk();
 }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
 handler.setInputAction(function(position) {
@@ -471,7 +472,11 @@ handler.setInputAction(function(position) {
 }, Cesium.ScreenSpaceEventType.LEFT_UP);
 
 handler.setInputAction(function(position) {
-    walk();
+    if( params.viewMode == "W") walk();
+}, Cesium.ScreenSpaceEventType.WHEEL);
+
+handler.setInputAction(function(position) {
+    if( params.viewMode == "W") walk();
 }, Cesium.ScreenSpaceEventType.PINCH_MOVE);
 
 
