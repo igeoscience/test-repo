@@ -10,12 +10,14 @@ Plugins  (elevation, Compass)あり　あとで追加
   http://52.4.31.236/plugins/
 
 ToDo:
+- Cookieに、進行度合いを保存
 - panorama.htmlをtouch対応にする。
 - panoramaをGigapanに
 - このサイトから、キーイベントを取り出し、heightを0にして移動させる。高さはheightに保存
 　　https://cesiumjs.org/tutorials/Camera-Tutorial/
   Camera Tutorialも参考になる。
   　https://cesiumjs.org/Cesium/Build/Apps/Sandcastle/index.html?src=Camera.html
+- iziModalのインスタンス作成を先に行う　コールバック　https://qiita.com/matsuby/items/3f635943f25e520b7c20
 //-->
 
 <html lang="en">
@@ -41,9 +43,42 @@ ToDo:
   <div id="cesiumContainer"></div>
 
   <!--  modal windows //-->
-  <div id="modal1" class="modais iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
-  <div id="modal2" class="modais iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
-  <div id="modal3" class="modais iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+  <div id="modal0" class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page1/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-1.html"></div>
+  <div class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page2/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-2.html"></div>
+  <div class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page3/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-3.html"></div>
+  <div class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page4/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-4.html"></div>
+  <div class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page5/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-5.html"></div>
+
+
+  <div id="modal1" class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page1/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-1.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page2/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-2.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page3/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-3.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page4/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-4.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page5/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-5.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page6/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-6.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page7/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-7.html"></div>
+
+
+  <div id="modal2" class="modalGroup2 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop2-1.html"></div>
+  <div class="modalGroup2 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
+  <div class="modalGroup2 iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+
+  <div id="modal3" class="modalGroup3 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
+  <div class="modalGroup3 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
+  <div class="modalGroup3 iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+
+  <div id="modal4" class="modalGroup4 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
+  <div class="modalGroup4 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
+  <div class="modalGroup4 iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+
+  <div id="modal5" class="modalGroup5 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
+  <div class="modalGroup5 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
+  <div class="modalGroup5 iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+
+  <div id="modal6" class="modalGroup6 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop1-1.html"></div>
+  <div class="modalGroup6 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="panorama" data-izimodal-iframeURL="./panorama.html"></div>
+  <div class="modalGroup6 iziModal" data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/1G4isv_Fylg?autoplay=1"></div>
+
 
   <script src="./js/jquery-3.3.1.min.js"></script>
   <script src="./js/iziModal.min.js"></script>
@@ -150,18 +185,28 @@ ToDo:
     //pins.show = false;
 
 // kml
-        //var dataSource = new Cesium.KmlDataSource();
+// kmlのpromiseと消去についてのtips
+// https://groups.google.com/forum/#!msg/cesium-dev/Bf9MwBgJN8w/5WfUFprBqSgJ
+        //var dataSource = new Cesium.KmlDataSource('cesiumContainer');
         //viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
 
-        /* 地質図を表示するには、ここをあとでアンコメント
+         //地質図を表示するには、ここをあとでアンコメント
+
+        var loadedGeometries = {};
         viewer.dataSources.add(Cesium.KmlDataSource
         .load('./kml/geo.kml', {
-            camera: viewer.camera,
-            canvas: viewer.canvas,
-            clampToGround: true,
+          clampToGround: true,
           })
-        );
-        */
+        ).then(function(myDataSource) {
+          // Add it to the viewer
+          viewer.dataSources.add(myDataSource);
+          // Remember the data source by ID so we can delete later
+          loadedGeometries['geolMap'] = myDataSource;
+          loadedGeometries['geolMap'].show = false;
+        });
+
+
+
 
 
 // Cesium Man
@@ -189,19 +234,19 @@ var params = {
 };
 var pane = new Tweakpane({foldable: true});
 
-/*
+
 pane.addControl(params, 'geolmap').on(
   'change',
   function(value) {
     if ( value ) {
-      viewer.dataSources.add( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
+      loadedGeometries['geolMap'].show = true;
     } else {
-      viewer.dataSources.remove( dataSource, {camera: viewer.camera,canvas: viewer.canvas,clampToGround: true,});
-
+      loadedGeometries['geolMap'].show = false;
     }
   }
 );
-*/
+
+
 
 
 pane.addSelector(params, 'viewMode', {
@@ -348,20 +393,7 @@ folder2.addButton('Stop6').on(
 folder2.close();
 
 
-$(function(){
-          $(".modais").iziModal({
-            history: false,
-            iframe : true,
-            fullscreen: true,
-            headerColor: '#000000',
-            group: 'group1',
-            loop: true,
-            arrowKeys: true,
-            navigateCaption: true,
-            navigateArrows: true,
-            closeButton: true,
-          });
-});
+
 
 
 
@@ -424,7 +456,25 @@ var pickedObject = scene.pick(click.position);
 // if (Cesium.defined(pickedObject) && (pickedObject.id === entity)) {
  if (Cesium.defined(pickedObject)) {
    //alert( pickedObject.id.id );この変数で場合わけ
-   $('#modal1').iziModal('open', this);
+
+   // 初回は2回クリックしないと開かないので、for文で先に実行できればベターだが、時間差が必要
+   $(function(){
+             $(".modalGroup" + pickedObject.id.id).iziModal({
+               history: true,
+               iframe : true,
+               fullscreen: true,
+               headerColor: '#000000',
+               group: 'group' + pickedObject.id.id,
+               loop: true,
+               arrowKeys: true,
+               navigateCaption: true,
+               navigateArrows: true,
+               closeButton: true,
+             });
+       });
+
+
+   $( "#modal" + pickedObject.id.id ).iziModal('open', this);
    viewer.trackedEntity = undefined;
    return (false);
    /*
@@ -675,6 +725,27 @@ var mc = new Hammer( viewDiv );
 mc.on("press", function(ev) {
   onPress(ev);
 });
+
+
+
+  $(".modalGroup0").iziModal({
+            history: true,
+            iframe : true,
+            fullscreen: true,
+            headerColor: '#000000',
+            group: 'group0',
+            loop: false,
+            arrowKeys: true,
+            navigateCaption: true,
+            navigateArrows: true,
+            closeButton: true,
+          });
+$( "#modal0" ).iziModal('open', this);
+
+
+
+
+
 
 
   </script>
