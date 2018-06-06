@@ -10,14 +10,36 @@
 
 <h1>  Site 1 Blease Fell Quarry Task list</h1>
 
-<ul>
-<li>Sketch of overall exposure</li>
-<li>Describe hand specimen of rock in your notebook</li>
-<li>Describe microscopic aspects of rock in your notebook</li>
-<li>Check the regional context of the site using the overlays</li>
-<li>Relate observations to past geological processes</li>
-</ul>
+<form name="confirm">
+<input type="checkbox" name="check" onchange="myCheck()" />Sketch of overall exposure<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Describe hand specimen of rock in your notebook<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Describe microscopic aspects of rock in your notebook<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Check the regional context of the site using the overlays<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Relate observations to past geological processes<br />
+</form>
+<div id="disp"> <a href='./1-7.html'>OK! Jump to Summary of Site 1</a> </div>
 
 
+<script>
+
+document.getElementById("disp").style.display="none";
+
+function myCheck() {
+  var flag = true
+  for ( var i = 0; i < document.confirm.check.length; i++ ) {
+    if (!document.confirm.check[i].checked) {
+      flag = false;
+    }
+  }
+  if( flag ) document.getElementById("disp").style.display = "block";
+
+}
+
+function moveToNextModal(){
+  $('#modal1').iziModal('next');
+
+}
+
+</script>
 </body>
 </html>
