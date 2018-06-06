@@ -9,13 +9,47 @@
 </head>
 <body>
 
-<h1>Equipments</h1>
+
 <p>
 <img src="equipments.png" />
+</p>
 <p>
-  <p>
     Select your equipment from the table: the rucksack, food, water and grain-size chart are mandatory, and you can select 5 other optional items
 You can deselect optional items by clicking their icon at the top of the screen, but you cannot do this for mandatory items.  Each item can also be selected using a keyboard shortcut letter.
-  </p>
+</p>
+<form name="equipments">
+<label><input type="checkbox" name="mandatory" onchange="myCheck()" /><b>Rucksack</b></label> <nbsp;>
+<label><input type="checkbox" />Wellington boots</label> <nbsp;>
+<label><input type="checkbox" />Hiking boots</label> <nbsp;>
+<label><input type="checkbox" />Waterproofs</label><nbsp;>
+<label><input type="checkbox" />Binoculars</label><nbsp;>
+<label><input type="checkbox" />Sun hat</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Water</b></label><nbsp;>
+<label><input type="checkbox" />Gloves</label><nbsp;>
+<label><input type="checkbox" />Sunscreen</label><nbsp;>
+<label><input type="checkbox" />Hand lens</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Food</b></label><nbsp;>
+<label><input type="checkbox" />Camera</label><nbsp;>
+<label><input type="checkbox" />Sunglasses</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Grain size chart</b></label><nbsp;>
+</form>
+<div id="disp"> OK! Ready! </div>
+
+<script>
+document.getElementById("disp").style.display="none";
+
+function myCheck() {
+  var flag = true
+  for ( var i = 0; i < document.equipments.mandatory.length; i++ ) {
+    if (!document.equipments.mandatory[i].checked) {
+      flag = false;
+    }
+  }
+  if( flag ) document.getElementById("disp").style.display = "block";
+
+}
+</script>
+
+
 </body>
 </html>

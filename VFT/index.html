@@ -16,7 +16,7 @@ ToDo:
 - このサイトから、キーイベントを取り出し、heightを0にして移動させる。高さはheightに保存
 　　https://cesiumjs.org/tutorials/Camera-Tutorial/
   Camera Tutorialも参考になる。
-  　https://cesiumjs.org/Cesium/Build/Apps/Sandcastle/index.html?src=Camera.html
+  　https://cesiumjs.org/Cesium/Build/Apps/Safndcastle/index.html?src=Camera.html
 - iziModalのインスタンス作成を先に行う　コールバック　https://qiita.com/matsuby/items/3f635943f25e520b7c20
 //-->
 
@@ -50,13 +50,13 @@ ToDo:
   <div class="modalGroup0 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page5/5)" data-izimodal-iframeURL="./contents/Skiddaw/site0/0-5.html"></div>
 
 
-  <div id="modal1" class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page1/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-1.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page2/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-2.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page3/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-3.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page4/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-4.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page5/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-5.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page6/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-6.html"></div>
-  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page7/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-7.html"></div>
+  <div id="modal1" class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page1/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-1.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page2/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-2.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page3/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-3.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page4/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-4.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page5/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-5.html"></div>
+  <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page6/6)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-6.html"></div>
+  <!-- <div class="modalGroup1 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="Skiddaw(Page7/7)" data-izimodal-iframeURL="./contents/Skiddaw/site1/1-7.html"></div> //-->
 
 
   <div id="modal2" class="modalGroup2 iziModal" data-izimodal-transitionin="fadeInUp" data-izimodal-title="info" data-izimodal-iframeURL="./stop2-1.html"></div>
@@ -303,7 +303,7 @@ folder1.addButton('Virtual MicroScope').on(
 
 folder1.close();
 var folder2 = pane.addFolder('Go To');
-folder2.addButton('Stop1').on(
+folder2.addButton('Site1').on(
   'click',
   function() {
     viewer.camera.flyTo({
@@ -317,7 +317,7 @@ folder2.addButton('Stop1').on(
 
   }
 );
-folder2.addButton('Stop2').on(
+folder2.addButton('Site2').on(
   'click',
   function() {
 
@@ -333,7 +333,7 @@ folder2.addButton('Stop2').on(
 
   }
 );
-folder2.addButton('Stop3').on(
+folder2.addButton('Site3').on(
   'click',
   function() {
     viewer.camera.flyTo({
@@ -348,7 +348,7 @@ folder2.addButton('Stop3').on(
 
   }
 );
-folder2.addButton('Stop4').on(
+folder2.addButton('Site4').on(
   'click',
   function() {
     viewer.camera.flyTo({
@@ -362,7 +362,7 @@ folder2.addButton('Stop4').on(
 
   }
 );
-folder2.addButton('Stop5').on(
+folder2.addButton('Site5').on(
   'click',
   function() {
     viewer.camera.flyTo({
@@ -376,7 +376,7 @@ folder2.addButton('Stop5').on(
 
   }
 );
-folder2.addButton('Stop6').on(
+folder2.addButton('Site6').on(
   'click',
   function() {
     viewer.camera.flyTo({
@@ -458,7 +458,7 @@ var pickedObject = scene.pick(click.position);
    //alert( pickedObject.id.id );この変数で場合わけ
 
    // 初回は2回クリックしないと開かないので、for文で先に実行できればベターだが、時間差が必要
-   $(function(){
+   const promise =
              $(".modalGroup" + pickedObject.id.id).iziModal({
                history: true,
                iframe : true,
@@ -470,13 +470,20 @@ var pickedObject = scene.pick(click.position);
                navigateCaption: true,
                navigateArrows: true,
                closeButton: true,
-             });
-       });
+             }) ;
+promise.then(
 
+$(function(){
 
    $( "#modal" + pickedObject.id.id ).iziModal('open', this);
-   viewer.trackedEntity = undefined;
-   return (false);
+   $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
+     viewer.trackedEntity = undefined;
+   });
+
+ })
+
+
+ );
    /*
     addToMessage('target', pickedObject.id.id);
     var position = viewer.camera.pickEllipsoid(click.position);
@@ -734,17 +741,13 @@ mc.on("press", function(ev) {
             fullscreen: true,
             headerColor: '#000000',
             group: 'group0',
-            loop: false,
+            loop: true,
             arrowKeys: true,
             navigateCaption: true,
             navigateArrows: true,
             closeButton: true,
           });
 $( "#modal0" ).iziModal('open', this);
-
-
-
-
 
 
 
