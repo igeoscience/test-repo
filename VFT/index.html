@@ -103,7 +103,7 @@ ToDo:
      geocoder: false,
      sceneModePicker: false,
      homeButton: false,
-     //baseLayerPicker: false,
+     baseLayerPicker: false,
      timeline: false,
      navigationInstructionsInitiallyVisible: false,
    });
@@ -194,7 +194,7 @@ ToDo:
 
         var loadedGeometries = {};
         viewer.dataSources.add(Cesium.KmlDataSource
-        .load('./kml/geo.kml', {
+        .load('./kml/geolMap2.kml', {
           clampToGround: true,
           })
         ).then(function(myDataSource) {
