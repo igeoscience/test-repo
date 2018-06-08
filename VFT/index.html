@@ -410,33 +410,38 @@ function getHeight (lon, lat){
 
 function onPress( event ) {
 
-  event.preventDefault();
+  //event.preventDefault();
   var pickedObject = scene.pick(event.center);
   if (Cesium.defined(pickedObject)) {
-    const promise =
-              $(".modalGroup" + pickedObject.id.id).iziModal({
-                history: true,
-                iframe : true,
-                fullscreen: true,
-                headerColor: '#000000',
-                group: 'group' + pickedObject.id.id,
-                loop: true,
-                arrowKeys: true,
-                navigateCaption: true,
-                navigateArrows: true,
-                closeButton: true,
-                width: 800,
-              }) ;
- promise.then(
- $(function(){
-    $( "#modal" + pickedObject.id.id ).iziModal('open', this);
-    $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
-      viewer.trackedEntity = undefined;
-    });
-  })
-  );
+    $(".modalGroup" + pickedObject.id.id).iziModal({
+             history: true,
+             iframe : true,
+             fullscreen: true,
+             headerColor: '#000000',
+             group: 'group' + pickedObject.id.id,
+             loop: true,
+             arrowKeys: true,
+             navigateCaption: true,
+             navigateArrows: true,
+             closeButton: true,
+             width: 800,
+           }) ;
+
+
+  $( "#modal" + pickedObject.id.id ).iziModal('open', this);
+  
+  /*
+  $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
+   viewer.trackedEntity = undefined;
+  });
+  */
+
+
+
   }
 }
+
+
 
 // event handler
 
@@ -460,8 +465,8 @@ handler.setInputAction(function(click) {
 var pickedObject = scene.pick(click.position);
 // if (Cesium.defined(pickedObject) && (pickedObject.id === entity)) {
  if (Cesium.defined(pickedObject)) {
-   const promise =
-             $(".modalGroup" + pickedObject.id.id).iziModal({
+
+      $(".modalGroup" + pickedObject.id.id).iziModal({
                history: true,
                iframe : true,
                fullscreen: true,
@@ -474,14 +479,14 @@ var pickedObject = scene.pick(click.position);
                closeButton: true,
                width: 800,
              }) ;
-promise.then(
-$(function(){
+
+
    $( "#modal" + pickedObject.id.id ).iziModal('open', this);
    $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
      viewer.trackedEntity = undefined;
    });
- })
- );
+
+
  }
 }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
