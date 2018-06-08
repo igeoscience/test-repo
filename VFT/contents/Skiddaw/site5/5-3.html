@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>Site 5 Small waterfall, Sinen Gill</title>
+</head>
+<body>
+
+<h1>Site 5 - Small waterfall, Sinen Gill Task List</h1>
+
+<form name="confirm">
+<input type="checkbox" name="check" onchange="myCheck()" />Make a labelled sketch of the north bank up to the small waterfall<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Identify the two rock types exposed in contact along the north bank and waterfall<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Describe the nature of the contact (sharpness, regularity)<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Which aluminosilicate should form in the country rock here? Use Phase Diagram 3, and assume the granite magma was at 700˚C<br />
+</form>
+<div id="disp"> <a href='./5-9.html'>OK! Jump to Summary of Site 5</a> </div>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+document.getElementById("disp").style.display="none";
+
+function myCheck() {
+  var flag = true
+  for ( var i = 0; i < document.confirm.check.length; i++ ) {
+    if (!document.confirm.check[i].checked) {
+      flag = false;
+    }
+  }
+  if( flag ) document.getElementById("disp").style.display = "block";
+
+}
+
+function moveToNextModal(){
+  $('#modal1').iziModal('next');
+
+}
+
+</script>
+</body>
+</html>

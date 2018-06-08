@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>Site 2 - Blease Beck</title>
+</head>
+<body>
+
+<h1> Site 2 - Blease Beck Task list</h1>
+
+<form name="confirm">
+<input type="checkbox" name="check" onchange="myCheck()" />State the obvious difference between rocks at Site 1 and Site 2<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Describe texture and mineralogy of rock under hand lens<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Describe microscopic aspects of rock (texture, deformation, metamorphism)<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Identify any evidence for contact memetamorphism<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Determine maximum pressure of metamorphism by reference to Phase Diagram 1<br />
+
+
+
+</form>
+<div id="disp"> <a href='./2-9.html'>OK! Jump to Summary of Site 2</a> </div>
+
+
+<script>
+
+document.getElementById("disp").style.display="none";
+
+function myCheck() {
+  var flag = true
+  for ( var i = 0; i < document.confirm.check.length; i++ ) {
+    if (!document.confirm.check[i].checked) {
+      flag = false;
+    }
+  }
+  if( flag ) document.getElementById("disp").style.display = "block";
+
+}
+
+function moveToNextModal(){
+  $('#modal1').iziModal('next');
+
+}
+
+</script>
+</body>
+</html>

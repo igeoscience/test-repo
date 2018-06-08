@@ -8,8 +8,6 @@
 <title>Equipments</title>
 </head>
 <body>
-
-
 <p>
 <img src="equipments.png" />
 </p>
@@ -36,18 +34,23 @@ You can deselect optional items by clicking their icon at the top of the screen,
 <div id="disp"> OK! Ready! </div>
 
 <script>
-document.getElementById("disp").style.display="none";
+document.getElementById("disp").style.display = "none";
 
 function myCheck() {
-  var flag = true
+  var flag = true;
   for ( var i = 0; i < document.equipments.mandatory.length; i++ ) {
     if (!document.equipments.mandatory[i].checked) {
       flag = false;
     }
   }
-  if( flag ) document.getElementById("disp").style.display = "block";
+  if( flag ) {
+    document.getElementById("disp").style.display = "block";
+  } else {
+    document.getElementById("disp").style.display = "none";
+  }
+ }
 
-}
+
 </script>
 
 

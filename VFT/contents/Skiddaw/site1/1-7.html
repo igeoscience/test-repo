@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<title>Site 1 - Blease Fell Quarry</title>
+<meta charset="UTF-8">
+<title>openseadragon</title>
 </head>
+
 <body>
-
-<h1>  Summary of Site 1 - Blease Fell Quarry</h1>
-
-<audio controls autoplay>
-    <source src="./04SummarySite1.mov" type="audio/mpeg">
-      Your browser does not support the audio element.
-</audio>
-
-<p>
-
-  The rocks here are fine-grained, medium to dark grey, weakly metamorphosed mudstones.  They have a fabric composed of numerous closely-spaced planar surfaces but no obvious colour banding, which suggests that this fabric is a fine planar cleavage rather than sedimentary bedding. The rocks could therefore be described as slates.  Fractures are common: many of these are steep joints, but some show striations that indicate minor slip surfaces.
-  The rocks lack many features you might find in other exposures, such as sedimentary structures, fossils, folds, or visible mineral crystals.  Even with the hand lens you would be lucky to pick out individual mineral grains in this fine-grained rock.
-  Sedimentary bedding is only easily visible under the microscope, as variations in grain size and colour. The cleavage also shows up, as fine dark lines cutting obliquely across the layering.  The sedimentary layering appears to be folded in places.  On a finer scale, the groundmass of the rock is composed mainly of mineral fragments, but modified by weak metamorphic recrystallization.
-  The tectonic cleavage is evidence that the rocks have been deformed, while there are only weak indications of metamorphic mineral growth that has not erased the cleavage.  A reasonable interpretation of this evidence is that these rocks have undergone regional metamorphism as a result of continental collision.  There are no signs of contact metamorphism from the Skiddaw Granite.  This is consistent with the fact that Site 1 lies a few kilometres from the nearest surface outcrop of the Skiddaw Granite on the geological map, and in the unaltered zone on the metamorphic zones map.
-
-  </p>
+<div id="openseadragon1" style="width: 790px; height: 380px;">Sketch Point 1-3</div>
 </body>
+<script src="../../../js/openseadragon.min.js"></script>
+<script type="text/javascript">
+    var viewer = OpenSeadragon({
+        id: "openseadragon1",
+        prefixUrl: "../../../images/openseadragon/",
+        tileSources: "dziImages/the-aletsch-glacier.dzi"
+    });
+</script>
+
+
 </html>

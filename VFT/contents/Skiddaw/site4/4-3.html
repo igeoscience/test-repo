@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>Site 4 - Large waterfall, Sinel Gill
+</title>
+</head>
+<body>
+
+<h1>Site 4 - Large waterfall, Sinel Gill Task list</h1>
+
+<form name="confirm">
+<input type="checkbox" name="check" onchange="myCheck()" />Describe difference between rocks at Site 2 and these rocks.<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Contrast texture and mineralogy of the two rock types in hand specimens.<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Contrast texture and mineralogy of the two rock types under the microscope.<br />
+<input type="checkbox" name="check" onchange="myCheck()" />Sketch the texture of the rock-type with layering.<br />
+</form>
+<div id="disp"> <a href='./4-11.html'>OK! Jump to Summary of Site 4</a> </div>
+
+
+<script>
+
+document.getElementById("disp").style.display="none";
+
+function myCheck() {
+  var flag = true
+  for ( var i = 0; i < document.confirm.check.length; i++ ) {
+    if (!document.confirm.check[i].checked) {
+      flag = false;
+    }
+  }
+  if( flag ) document.getElementById("disp").style.display = "block";
+
+}
+
+function moveToNextModal(){
+  $('#modal1').iziModal('next');
+
+}
+
+</script>
+</body>
+</html>
