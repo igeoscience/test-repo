@@ -409,14 +409,34 @@ function getHeight (lon, lat){
 }
 
 function onPress( event ) {
+
   event.preventDefault();
   var pickedObject = scene.pick(event.center);
   if (Cesium.defined(pickedObject)) {
-    $('#modal1').iziModal('open', this);
-    viewer.trackedEntity = undefined;
+    const promise =
+              $(".modalGroup" + pickedObject.id.id).iziModal({
+                history: true,
+                iframe : true,
+                fullscreen: true,
+                headerColor: '#000000',
+                group: 'group' + pickedObject.id.id,
+                loop: true,
+                arrowKeys: true,
+                navigateCaption: true,
+                navigateArrows: true,
+                closeButton: true,
+                width: 800,
+              }) ;
+ promise.then(
+ $(function(){
+    $( "#modal" + pickedObject.id.id ).iziModal('open', this);
+    $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
+      viewer.trackedEntity = undefined;
+    });
+  })
+  );
   }
 }
-
 
 // event handler
 
@@ -437,16 +457,9 @@ document.addEventListener('keyup', function(e) {
 
 var handler = new Cesium.ScreenSpaceEventHandler(canvas);
 handler.setInputAction(function(click) {
-var alertText = '';
-function addToMessage(key, value) {
-    alertText += key + ': ' + value + '\n';
-}
-
 var pickedObject = scene.pick(click.position);
 // if (Cesium.defined(pickedObject) && (pickedObject.id === entity)) {
  if (Cesium.defined(pickedObject)) {
-   //alert( pickedObject.id.id );この変数で場合わけ
-
    const promise =
              $(".modalGroup" + pickedObject.id.id).iziModal({
                history: true,
@@ -462,40 +475,14 @@ var pickedObject = scene.pick(click.position);
                width: 800,
              }) ;
 promise.then(
-
 $(function(){
-
    $( "#modal" + pickedObject.id.id ).iziModal('open', this);
    $(document).on('closed', "#modal" + pickedObject.id.id, function (e, modal) {
      viewer.trackedEntity = undefined;
    });
-
  })
-
-
  );
-   /*
-    addToMessage('target', pickedObject.id.id);
-    var position = viewer.camera.pickEllipsoid(click.position);
-    addToMessage('screenX', click.position.x);
-    addToMessage('screenY', click.position.y);
-    addToMessage('didHitGlobe', Cesium.defined(position));
-    var cartographicPosition = Cesium.Ellipsoid.WGS84.cartesianToCartographic(position);
-    addToMessage('longitude', Cesium.Math.toDegrees(cartographicPosition.longitude));
-    addToMessage('latitude', Cesium.Math.toDegrees(cartographicPosition.latitude));
-terrainSamplePositions = [cartographicPosition];
-
-
-    Cesium.sampleTerrain(viewer.terrainProvider, 9, terrainSamplePositions).then(function() {
-        addToMessage('height', terrainSamplePositions[0].height);
-    }).always(function() {
-     //alert(alertText);
-     $('#modal1').iziModal('open', this);
-     viewer.trackedEntity = undefined;
-    });
-*/
-
-  }
+ }
 }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
 
@@ -714,6 +701,7 @@ Cesium.Cartesian3.fromRadians(pt.longitude, pt.latitude,ht),
 var mc = new Hammer( viewDiv );
 mc.on("press", function(ev) {
   onPress(ev);
+
 });
 
   $(".modalGroup0").iziModal({
