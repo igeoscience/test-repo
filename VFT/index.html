@@ -422,11 +422,13 @@ function onPress( event ) {
              headerColor: '#000000',
              group: 'group' + pickedObject.id.id,
              loop: true,
-             arrowKeys: true,
+             arrowKeys: false,
              navigateCaption: true,
-             navigateArrows: true,
+             navigateArrows: false,
              closeButton: true,
-             width: 550,
+             width: 800,
+             iframeHeight: 600,
+
            }) ;
 
 
@@ -479,9 +481,8 @@ var pickedObject = scene.pick(click.position);
                navigateCaption: true,
                navigateArrows: true,
                closeButton: true,
-               width: 550,
-
-
+               width: 800,
+               iframeHeight: 600,
 
              }) ;
 
@@ -725,7 +726,8 @@ mc.on("press", function(ev) {
             navigateCaption: true,
             navigateArrows: true,
             closeButton: true,
-            width: 550,
+            width: 800,
+            iframeHeight: 600,
           });
 $( "#modal0" ).iziModal('open', this);
 
