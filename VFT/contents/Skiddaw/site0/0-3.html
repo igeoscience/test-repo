@@ -8,41 +8,79 @@
 <title>Equipments</title>
 </head>
 <body>
+  <audio id="rucksackIN" src="./rucksackIN.mov"></audio>
+
+<audio id="wellingtonbootsIN" src="./wellingtonbootsIN.mov"></audio>
+<audio id="wellingtonbootsOUT" src="./wellingtonbootsOUT.mov"></audio>
+<audio id="hikingbootsIN" src="./hikingbootsIN.mov"></audio>
+<audio id="hikingbootsOUT" src="./hikingbootsOUT.mov"></audio>
+<audio id="waterproofsIN" src="./waterproofsIN.mov"></audio>
+<audio id="waterproofsOUT" src="./waterproofsOUT.mov"></audio>
+<audio id="binocularsIN" src="./binocularsIN.mov"></audio>
+<audio id="binocularsOUT" src="./binocularsOUT.mov"></audio>
+<audio id="sunhatIN" src="./sunhatIN.mov"></audio>
+<audio id="sunhatOUT" src="./sunhatOUT.mov"></audio>
+<audio id="waterIN" src="./waterIN.mov"></audio>
+<audio id="glovesIN" src="./glovesIN.mov"></audio>
+<audio id="glovesOUT" src="./glovesOUT.mov"></audio>
+<audio id="sunscreenIN" src="./sunscreenIN.mov"></audio>
+<audio id="sunscreenOUT" src="./sunscreenOUT.mov"></audio>
+<audio id="handlensIN" src="./handlensIN.mov"></audio>
+<audio id="handlensOUT" src="./handlensOUT.mov"></audio>
+<audio id="foodIN" src="./foodIN.mov"></audio>
+<audio id="cameraIN" src="./cameraIN.mov"></audio>
+<audio id="cameraOUT" src="./cameraOUT.mov"></audio>
+<audio id="sunglassesIN" src="./sunglassesIN.mov"></audio>
+<audio id="sunglassesOUT" src="./sunglassesOUT.mov"></audio>
+<audio id="grainsizechartIN" src="./grainsizechartIN.mov"></audio>
 <p>
-<img src="equipments.png" />
+<img src="equipments.jpg" />
 </p>
 <p>
-    Select your equipment from the table: the rucksack, food, water and grain-size chart are mandatory, and you can select 5 other optional items
-You can deselect optional items by clicking their icon at the top of the screen, but you cannot do this for mandatory items.  Each item can also be selected using a keyboard shortcut letter.
+    Select your equipment from the table: the rucksack, food, water and grain-size chart are mandatory, and you can select other optional items
+You can deselect optional items by clicking a checkbox, but you cannot do this for mandatory items.
 </p>
 <form name="equipments">
-<label><input type="checkbox" name="mandatory" onchange="myCheck()" /><b>Rucksack</b></label> <nbsp;>
-<label><input type="checkbox" />Wellington boots</label> <nbsp;>
-<label><input type="checkbox" />Hiking boots</label> <nbsp;>
-<label><input type="checkbox" />Waterproofs</label><nbsp;>
-<label><input type="checkbox" />Binoculars</label><nbsp;>
-<label><input type="checkbox" />Sun hat</label><nbsp;>
-<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Water</b></label><nbsp;>
-<label><input type="checkbox" />Gloves</label><nbsp;>
-<label><input type="checkbox" />Sunscreen</label><nbsp;>
-<label><input type="checkbox" />Hand lens</label><nbsp;>
-<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Food</b></label><nbsp;>
-<label><input type="checkbox" />Camera</label><nbsp;>
-<label><input type="checkbox" />Sunglasses</label><nbsp;>
-<label><input type="checkbox" name="mandatory" onchange="myCheck()"  /><b>Grain size chart</b></label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck();sound('rucksack', 0)" /><b>Rucksack</b></label> <nbsp;>
+<label><input type="checkbox" onchange="sound('wellingtonboots', 1)" />Wellington boots</label> <nbsp;>
+<label><input type="checkbox" onchange="sound('hikingboots', 2)" />Hiking boots</label> <nbsp;>
+<label><input type="checkbox" onchange="sound('waterproofs', 3)" />Waterproofs</label><nbsp;>
+<label><input type="checkbox" onchange="sound('binoculars', 4)" />Binoculars</label><nbsp;>
+<label><input type="checkbox" onchange="sound('sunhat', 5)" />Sun hat</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck();sound('water', 6)"  /><b>Water</b></label><nbsp;>
+<label><input type="checkbox" onchange="sound('gloves', 7)" />Gloves</label><nbsp;>
+<label><input type="checkbox" onchange="sound('sunscreen', 8)" />Sunscreen</label><nbsp;>
+<label><input type="checkbox" onchange="sound('handlens', 9)" />Hand lens</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck();sound('food', 10)"  /><b>Food</b></label><nbsp;>
+<label><input type="checkbox" onchange="sound('camera', 11)" />Camera</label><nbsp;>
+<label><input type="checkbox" onchange="sound('sunglasses', 12)"/>Sunglasses</label><nbsp;>
+<label><input type="checkbox" name="mandatory" onchange="myCheck();sound('grainsizechart', 13)"  /><b>Grain size chart</b></label><nbsp;>
 </form>
 <div id="disp"> OK! Ready! </div>
 
 <script>
 document.getElementById("disp").style.display = "none";
 
+function sound(id, i){
+if( document.equipments[i].checked){
+  document.getElementById(id+"IN").play();
+} else {
+  document.getElementById(id+"OUT").play();
+}
+
+}
+
+
 function myCheck() {
   var flag = true;
   for ( var i = 0; i < document.equipments.mandatory.length; i++ ) {
     if (!document.equipments.mandatory[i].checked) {
       flag = false;
+    } else {
+      document.equipments.mandatory[i].disabled = true;
     }
-  }
+   }
+
   if( flag ) {
     document.getElementById("disp").style.display = "block";
   } else {
