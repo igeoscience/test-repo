@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>panorama</title>
+</head>
+
+        <style type="text/css">
+            html {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                overflow: hidden;
+                height: 100%;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="stage"></div>
+
+
+        <script src="../../../js/three.min.js"></script>
+    		<script src="../../../js/OrbitControls.js"></script>
+        <script type="text/javascript">
+
+        //windowサイズを画面サイズに合わせる
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+
+  var element;
+  var scene, camera, renderer, controls;
+
+  function init() {
+
+    // シーンの作成
+    scene = new THREE.Scene();
+
+    // リサイズイベントを検知してリサイズ処理を実行
+    window.addEventListener("resize", handleResize, false);
+
+    // カメラの作成
+    camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
+    camera.position.set(0, 0, 1);
+    scene.add(camera);
+
+    // 球体の形状を作成
+    var geometry = new THREE.SphereGeometry(5, 60, 40);
+    geometry.scale(-1, 1, 1);
+
+    //　マテリアルの作成
+    var material = new THREE.MeshBasicMaterial({
+      // 画像をテクスチャとして読み込み
+      map: THREE.ImageUtils.loadTexture("./panorama.jpg")
+    });
+
+    // 球体(形状)にマテリアル(質感)を貼り付けて物体を作成
+    sphere = new THREE.Mesh(geometry, material);
+
+    //　シーンに追加
+    scene.add(sphere);
+
+    // レンダラーの作成
+    renderer = new THREE.WebGLRenderer();
+    // レンダラーをwindowサイズに合わせる
+    renderer.setSize(width, height);
+    renderer.setClearColor({color: 0x000000});
+    element = renderer.domElement;
+    document.getElementById("stage").appendChild(element);
+    renderer.render(scene, camera);
+
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+		controls.dampingFactor = 0.25;
+		controls.screenSpacePanning = false;
+		controls.minDistance = 1;
+		controls.maxDistance = 500
+		controls.maxPolarAngle = Math.PI ;
+    controls.rotateSpeed = 0.1;
+
+
+    render();
+  }
+
+  // リサイズ処理
+  function handleResize() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  }
+
+
+
+  function render() {
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+    controls.update();
+  }
+
+  window.addEventListener("load", init, false);
+
+
+        </script>
+
+    </body>
+</html>
